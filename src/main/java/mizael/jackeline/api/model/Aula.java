@@ -1,4 +1,4 @@
-package mizael.jackeline.api.model;
+﻿package mizael.jackeline.api.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,3 +34,4 @@ public class Aula {
     @Column(name = "ordem", nullable = false)
     private Integer ordem;
 }
+

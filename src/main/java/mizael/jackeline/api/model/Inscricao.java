@@ -1,4 +1,4 @@
-package mizael.jackeline.api.model;
+﻿package mizael.jackeline.api.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,3 +40,4 @@ public class Inscricao {
     @Column(name = "data_confirmacao")
     private LocalDateTime dataConfirmacao;
 }
+
