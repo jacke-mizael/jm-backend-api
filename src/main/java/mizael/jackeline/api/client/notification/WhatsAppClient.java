@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.client.notification;
+package mizael.jackeline.api.client.notification;
 
 import mizael.jackeline.api.dto.notification.response.WhatsAppMessageResponse;
 import mizael.jackeline.api.dto.notification.response.WhatsAppSessionStatus;

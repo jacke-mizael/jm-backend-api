@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.service.notification;
+package mizael.jackeline.api.service.notification;
 
 import mizael.jackeline.api.client.notification.WhatsAppClient;
 import mizael.jackeline.api.dto.notification.request.WhatsAppMessageRequest;

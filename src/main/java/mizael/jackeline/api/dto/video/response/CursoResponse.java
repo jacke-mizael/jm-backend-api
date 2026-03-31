@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.dto.video.response;
+package mizael.jackeline.api.dto.video.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

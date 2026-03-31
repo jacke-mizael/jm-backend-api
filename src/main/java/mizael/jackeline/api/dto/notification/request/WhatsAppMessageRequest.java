@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.dto.notification.request;
+package mizael.jackeline.api.dto.notification.request;
 
 import jakarta.validation.constraints.NotBlank;
 

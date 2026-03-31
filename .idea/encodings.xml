@@ -2,5 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mizael/jackeline/api/model/Agendamento.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mizael/jackeline/api/repository/video/AulaRepository.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mizael/jackeline/api/service/usuario/UsuarioService.java" charset="UTF-8" />
   </component>
 </project>

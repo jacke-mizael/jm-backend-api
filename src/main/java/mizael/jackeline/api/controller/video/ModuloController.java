@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.controller.video;
+package mizael.jackeline.api.controller.video;
 
 import jakarta.validation.Valid;
 import mizael.jackeline.api.dto.video.request.ModuloRequest;

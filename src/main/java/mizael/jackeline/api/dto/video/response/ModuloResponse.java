@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.dto.video.response;
+package mizael.jackeline.api.dto.video.response;
 
 public record ModuloResponse(
         Long id,

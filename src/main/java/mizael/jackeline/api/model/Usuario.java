@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.model;
+package mizael.jackeline.api.model;
 
 import jakarta.persistence.*;
 import lombok.*;

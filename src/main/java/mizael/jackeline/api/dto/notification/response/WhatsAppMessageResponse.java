@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.dto.notification.response;
+package mizael.jackeline.api.dto.notification.response;
 
 public record WhatsAppMessageResponse(
         boolean success,

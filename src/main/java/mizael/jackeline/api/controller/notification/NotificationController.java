@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.controller.notification;
+package mizael.jackeline.api.controller.notification;
 
 import jakarta.validation.Valid;
 import mizael.jackeline.api.dto.notification.request.WhatsAppMessageRequest;

@@ -1,4 +1,4 @@
-﻿package mizael.jackeline.api.mapper.video;
+package mizael.jackeline.api.mapper.video;
 
 import mizael.jackeline.api.dto.video.request.CursoRequest;
 import mizael.jackeline.api.dto.video.response.CursoResponse;
