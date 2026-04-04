@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login e Logout</title>
+    <style>
+        :root {
+            --bg: #f4f2ec;
+            --panel: #ffffff;
+            --text: #2d2a26;
+            --accent: #006d77;
+            --accent-2: #83c5be;
+            --danger: #b42318;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 10% 20%, #dbe7e4 0%, var(--bg) 45%, #ece6dc 100%);
+        }
+
+        .card {
+            width: min(92vw, 480px);
+            background: var(--panel);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            animation: rise 500ms ease-out;
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cfd4d2;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: #fff;
+            background: var(--accent);
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 150ms ease, opacity 150ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        button.secondary {
+            background: #3f3f46;
+        }
+
+        button.danger {
+            background: var(--danger);
+        }
+
+        .status {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #f6f7f8;
+            min-height: 48px;
+            white-space: pre-wrap;
+            font-size: 0.95rem;
+        }
+
+        .tip {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #53504b;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Autenticação</h1>
+
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="seu@email.com" />
+
+    <label for="senha">Senha</label>
+    <input id="senha" type="password" placeholder="Sua senha" />
+
+    <div class="actions">
+        <button id="btnLogin">Entrar</button>
+        <button id="btnMe" class="secondary">Quem sou eu</button>
+        <button id="btnLogout" class="danger">Sair</button>
+    </div>
+
+    <div id="status" class="status">Pronto para autenticar.</div>
+    <p class="tip">Página de teste: use os endpoints /auth/login, /auth/me e /auth/logout.</p>
+</div>
+
+<script>
+    const statusBox = document.getElementById("status");
+
+    function setStatus(texto, isError = false) {
+        statusBox.textContent = texto;
+        statusBox.style.background = isError ? "#fef0f0" : "#f6f7f8";
+    }
+
+    async function callApi(path, method, body) {
+        const response = await fetch(path, {
+            method,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: body ? JSON.stringify(body) : undefined
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(payload.mensagem || "Erro na requisição");
+        }
+
+        return payload;
+    }
+
+    document.getElementById("btnLogin").addEventListener("click", async () => {
+        const email = document.getElementById("email").value.trim();
+        const senha = document.getElementById("senha").value;
+
+        try {
+            const data = await callApi("/auth/login", "POST", { email, senha });
+            setStatus(`Login OK\nUsuário: ${data.nome} (${data.email})\nPerfil: ${data.role}`);
+        } catch (err) {
+            setStatus(err.message, true);
+        }
+    });
+
+    document.getElementById("btnMe").addEventListener("click", async () => {
+        try {
+            const data = await callApi("/auth/me", "GET");
+            setStatus(`Sessão ativa\nUsuário: ${data.nome} (${data.email})\nPerfil: ${data.role}`);
+        } catch (err) {
+            setStatus(err.message, true);
+        }
+    });
+
+    document.getElementById("btnLogout").addEventListener("click", async () => {
+        try {
+            const data = await callApi("/auth/logout", "POST");
+            setStatus(data.mensagem);
+        } catch (err) {
+            setStatus(err.message, true);
+        }
+    });
+</script>
+</body>
+</html>

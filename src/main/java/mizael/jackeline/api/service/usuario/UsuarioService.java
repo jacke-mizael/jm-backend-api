@@ -34,6 +34,17 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
+    public Usuario autenticar(String email, String senha) {
+        Usuario usuario = repository.findByEmailIgnoreCase(email)
+                .orElseThrow(() -> new RuntimeException("Email ou senha inválidos"));
+
+        if (!usuario.getSenha().equals(senha)) {
+            throw new RuntimeException("Email ou senha inválidos");
+        }
+
+        return usuario;
+    }
+
     public Usuario atualizar(Long id, UsuarioRequest dto) {
 
         Usuario usuario = buscarPorId(id);
