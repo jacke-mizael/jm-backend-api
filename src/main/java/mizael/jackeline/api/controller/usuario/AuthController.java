@@ -2,6 +2,7 @@ package mizael.jackeline.api.controller.usuario;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import mizael.jackeline.api.controller.docs.AuthApiDoc;
 import mizael.jackeline.api.dto.usuario.request.LoginRequest;
 import mizael.jackeline.api.dto.usuario.response.LoginResponse;
 import mizael.jackeline.api.model.Usuario;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthController implements AuthApiDoc {
 
     private static final String USUARIO_LOGADO = "USUARIO_LOGADO";
 

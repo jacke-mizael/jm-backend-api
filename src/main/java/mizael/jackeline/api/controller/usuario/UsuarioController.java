@@ -1,6 +1,7 @@
 package mizael.jackeline.api.controller.usuario;
 
 import jakarta.validation.Valid;
+import mizael.jackeline.api.controller.docs.UsuarioApiDoc;
 import mizael.jackeline.api.dto.usuario.request.UsuarioRequest;
 import mizael.jackeline.api.dto.usuario.response.UsuarioResponse;
 import mizael.jackeline.api.mapper.usuario.UsuarioMapper;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/usuarios")
-public class UsuarioController {
+public class UsuarioController implements UsuarioApiDoc {
 
     private final UsuarioService service;
 
