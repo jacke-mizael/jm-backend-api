@@ -18,7 +18,7 @@ import java.util.List;
 
 @Tag(
         name = "Aulas",
-        description = "Gestao das aulas em video dos modulos de cada curso"
+        description = "Gestão das aulas em vídeo dos módulos de cada curso"
 )
 public interface AulaApiDoc {
 
@@ -33,11 +33,11 @@ public interface AulaApiDoc {
 
     @Operation(
             summary = "Buscar aula por ID",
-            description = "Consulta os dados de uma aula especifica."
+            description = "Consulta os dados de uma aula específica."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Aula encontrada", content = @Content(schema = @Schema(implementation = AulaResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Aula nao encontrada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+            @ApiResponse(responseCode = "404", description = "Aula não encontrada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<AulaResponse> buscarPorId(
             @Parameter(description = "ID da aula", example = "1", required = true)
@@ -46,17 +46,17 @@ public interface AulaApiDoc {
 
     @Operation(
             summary = "Criar aula",
-            description = "Cria uma nova aula vinculada a um modulo existente."
+            description = "Cria uma nova aula vinculada a um módulo existente."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Aula criada com sucesso", content = @Content(schema = @Schema(implementation = AulaResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Dados invalidos para criacao", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Modulo vinculado nao encontrado", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+            @ApiResponse(responseCode = "400", description = "Dados inválidos para criação", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "404", description = "Módulo vinculado não encontrado", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<AulaResponse> criar(
             @RequestBody(
                     required = true,
-                    description = "Dados para criacao da aula",
+                    description = "Dados para criação da aula",
                     content = @Content(schema = @Schema(implementation = AulaRequest.class))
             )
             AulaRequest request
@@ -68,15 +68,15 @@ public interface AulaApiDoc {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Aula atualizada com sucesso", content = @Content(schema = @Schema(implementation = AulaResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Dados invalidos para atualizacao", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Aula ou modulo vinculado nao encontrado", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+            @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "404", description = "Aula ou módulo vinculado não encontrado", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<AulaResponse> atualizar(
             @Parameter(description = "ID da aula", example = "1", required = true)
             Long id,
             @RequestBody(
                     required = true,
-                    description = "Dados para atualizacao da aula",
+                    description = "Dados para atualização da aula",
                     content = @Content(schema = @Schema(implementation = AulaRequest.class))
             )
             AulaRequest request
@@ -84,11 +84,11 @@ public interface AulaApiDoc {
 
     @Operation(
             summary = "Excluir aula",
-            description = "Remove uma aula do modulo correspondente."
+            description = "Remove uma aula do módulo correspondente."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Aula removida com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Aula nao encontrada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+            @ApiResponse(responseCode = "404", description = "Aula não encontrada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<Void> deletar(
             @Parameter(description = "ID da aula", example = "1", required = true)

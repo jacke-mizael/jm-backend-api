@@ -16,24 +16,24 @@ import org.springframework.http.ResponseEntity;
 import java.util.Map;
 
 @Tag(
-        name = "Autenticacao",
-        description = "Operacoes de login, logout e validacao de sessao do usuario"
+        name = "Autenticação",
+        description = "Operações de login, logout e validação de sessão do usuário"
 )
 public interface AuthApiDoc {
 
     @Operation(
             summary = "Realizar login",
-            description = "Autentica a usuaria pelo email e senha, iniciando sessao no servidor."
+            description = "Autentica a usuária pelo e-mail e senha, iniciando sessão no servidor."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Login realizado com sucesso", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
-            @ApiResponse(responseCode = "400", description = "Dados invalidos de entrada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
-            @ApiResponse(responseCode = "401", description = "Email ou senha invalidos", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+            @ApiResponse(responseCode = "400", description = "Dados inválidos de entrada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "401", description = "E-mail ou senha inválidos", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<?> login(
             @RequestBody(
                     required = true,
-                    description = "Credenciais para autenticacao da usuaria",
+                    description = "Credenciais para autenticação da usuária",
                     content = @Content(schema = @Schema(implementation = LoginRequest.class))
             )
             LoginRequest loginRequest,
@@ -42,7 +42,7 @@ public interface AuthApiDoc {
 
     @Operation(
             summary = "Realizar logout",
-            description = "Encerra a sessao atual da usuaria autenticada."
+            description = "Encerra a sessão atual da usuária autenticada."
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Logout realizado com sucesso")
@@ -50,13 +50,13 @@ public interface AuthApiDoc {
     ResponseEntity<Map<String, String>> logout(HttpSession session);
 
     @Operation(
-            summary = "Consultar usuario autenticado",
-            description = "Retorna os dados basicos da usuaria vinculada a sessao atual."
+            summary = "Consultar usuário autenticado",
+            description = "Retorna os dados básicos da usuária vinculada à sessão atual."
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Usuario autenticado recuperado com sucesso", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
-            @ApiResponse(responseCode = "401", description = "Nenhuma sessao autenticada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Usuario da sessao nao encontrado", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
+            @ApiResponse(responseCode = "200", description = "Usuário autenticado recuperado com sucesso", content = @Content(schema = @Schema(implementation = LoginResponse.class))),
+            @ApiResponse(responseCode = "401", description = "Nenhuma sessão autenticada", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class))),
+            @ApiResponse(responseCode = "404", description = "Usuário da sessão não encontrado", content = @Content(schema = @Schema(implementation = ApiErrorResponse.class)))
     })
     ResponseEntity<?> me(HttpSession session);
 }

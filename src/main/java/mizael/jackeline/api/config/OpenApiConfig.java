@@ -10,21 +10,21 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "Jackeline Mizael API - Plataforma de Cursos de Manicure",
+                title = "Jackeline Mizael API - Plataforma de Cursos de Nail Designer",
                 version = "v1",
-                description = "API REST em camadas para autenticacao e gestao de usuarios, cursos, modulos e aulas. " +
-                        "A plataforma apoia a capacitacao profissional de mulheres em situacao de vulnerabilidade por meio " +
+                description = "API REST em camadas para autenticação e gestão de usuários, cursos, módulos e aulas. " +
+                        "A plataforma apoia a capacitacão profissional de mulheres em situacão de vulnerabilidade por meio " +
                         "de trilhas de aprendizado em Nail Design.",
                 contact = @Contact(
                         name = "Equipe Jackeline Mizael",
-                        email = "contato@jackelinemizael.com"
+                        email = "grupo06jacke@gmail.com"
                 ),
                 license = @License(
                         name = "Uso educacional e social"
                 )
         ),
         servers = {
-                @Server(url = "http://localhost:8080", description = "Ambiente local de desenvolvimento")
+                @Server(url = "http://localhost:8081", description = "Ambiente local de desenvolvimento")
         }
 )
 public class OpenApiConfig {
