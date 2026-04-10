@@ -1,0 +1,353 @@
+﻿{
+  "info": {
+    "_postman_id": "4adf3f26-9c73-4f6c-a55c-89f7f26c8c8e",
+    "name": "JM Backend API - Endpoints",
+    "description": "Collection com endpoints da API para uso no Postman/Insomnia, sem scripts de teste.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"senha\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/auth/me"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/auth/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Criar usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Usuario Teste\",\n  \"telefone\": \"11999999999\",\n  \"email\": \"usuario@example.com\",\n  \"senha\": \"123456\",\n  \"role\": \"ALUNO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/usuarios"
+          }
+        },
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/usuarios"
+          }
+        },
+        {
+          "name": "Buscar usuario por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/usuarios/{{userId}}"
+          }
+        },
+        {
+          "name": "Atualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Usuario Atualizado\",\n  \"telefone\": \"11988888888\",\n  \"email\": \"usuario@example.com\",\n  \"senha\": \"123456\",\n  \"role\": \"ALUNO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/usuarios/{{userId}}"
+          }
+        },
+        {
+          "name": "Deletar usuario",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/usuarios/{{userId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cursos",
+      "item": [
+        {
+          "name": "Criar curso",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Curso API\",\n  \"descricao\": \"Curso criado pela collection\",\n  \"valor\": 199.9,\n  \"ativo\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/cursos"
+          }
+        },
+        {
+          "name": "Listar cursos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cursos"
+          }
+        },
+        {
+          "name": "Buscar curso por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/cursos/{{cursoId}}"
+          }
+        },
+        {
+          "name": "Atualizar curso",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Curso API Atualizado\",\n  \"descricao\": \"Descricao atualizada\",\n  \"valor\": 249.9,\n  \"ativo\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/cursos/{{cursoId}}"
+          }
+        },
+        {
+          "name": "Deletar curso",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/cursos/{{cursoId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Modulos",
+      "item": [
+        {
+          "name": "Criar modulo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cursoId\": {{cursoId}},\n  \"titulo\": \"Modulo 1\",\n  \"ordem\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/modulos"
+          }
+        },
+        {
+          "name": "Listar modulos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/modulos"
+          }
+        },
+        {
+          "name": "Buscar modulo por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/modulos/{{moduloId}}"
+          }
+        },
+        {
+          "name": "Atualizar modulo",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cursoId\": {{cursoId}},\n  \"titulo\": \"Modulo 1 Atualizado\",\n  \"ordem\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/modulos/{{moduloId}}"
+          }
+        },
+        {
+          "name": "Deletar modulo",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/modulos/{{moduloId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Aulas",
+      "item": [
+        {
+          "name": "Criar aula",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"moduloId\": {{moduloId}},\n  \"titulo\": \"Aula 1\",\n  \"descricao\": \"Descricao da aula\",\n  \"linkYoutube\": \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n  \"ordem\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/aulas"
+          }
+        },
+        {
+          "name": "Listar aulas",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/aulas"
+          }
+        },
+        {
+          "name": "Buscar aula por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/aulas/{{aulaId}}"
+          }
+        },
+        {
+          "name": "Atualizar aula",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"moduloId\": {{moduloId}},\n  \"titulo\": \"Aula 1 Atualizada\",\n  \"descricao\": \"Descricao atualizada\",\n  \"linkYoutube\": \"https://www.youtube.com/watch?v=aqz-KE-bpKQ\",\n  \"ordem\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseUrl}}/aulas/{{aulaId}}"
+          }
+        },
+        {
+          "name": "Deletar aula",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/aulas/{{aulaId}}"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "userId",
+      "value": "1"
+    },
+    {
+      "key": "cursoId",
+      "value": "1"
+    },
+    {
+      "key": "moduloId",
+      "value": "1"
+    },
+    {
+      "key": "aulaId",
+      "value": "1"
+    }
+  ]
+}
