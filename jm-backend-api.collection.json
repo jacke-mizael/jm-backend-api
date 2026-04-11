@@ -2,8 +2,18 @@
   "info": {
     "_postman_id": "4adf3f26-9c73-4f6c-a55c-89f7f26c8c8e",
     "name": "JM Backend API - Endpoints",
-    "description": "Collection com endpoints da API para uso no Postman/Insomnia, sem scripts de teste.",
+    "description": "Collection com endpoints da API para uso no Postman/Insomnia com autenticacao JWT (Bearer), sem scripts de teste.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwtToken}}",
+        "type": "string"
+      }
+    ]
   },
   "item": [
     {
@@ -12,6 +22,9 @@
         {
           "name": "Login",
           "request": {
+            "auth": {
+              "type": "noauth"
+            },
             "method": "POST",
             "header": [
               {
@@ -21,7 +34,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"usuario@example.com\",\n  \"senha\": \"123456\"\n}",
+              "raw": "{\n  \"email\": \"{{usuarioEmail}}\",\n  \"senha\": \"{{usuarioSenha}}\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -53,6 +66,9 @@
         {
           "name": "Criar usuario",
           "request": {
+            "auth": {
+              "type": "noauth"
+            },
             "method": "POST",
             "header": [
               {
@@ -62,7 +78,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nome\": \"Usuario Teste\",\n  \"telefone\": \"11999999999\",\n  \"email\": \"usuario@example.com\",\n  \"senha\": \"123456\",\n  \"role\": \"ALUNO\"\n}",
+              "raw": "{\n  \"nome\": \"Usuario Teste\",\n  \"telefone\": \"11999999999\",\n  \"email\": \"{{usuarioEmail}}\",\n  \"senha\": \"{{usuarioSenha}}\",\n  \"role\": \"ALUNO\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -332,6 +348,18 @@
     {
       "key": "baseUrl",
       "value": "http://localhost:8081"
+    },
+    {
+      "key": "jwtToken",
+      "value": "COLE_AQUI_SEU_TOKEN_JWT"
+    },
+    {
+      "key": "usuarioEmail",
+      "value": "usuario@example.com"
+    },
+    {
+      "key": "usuarioSenha",
+      "value": "123456"
     },
     {
       "key": "userId",

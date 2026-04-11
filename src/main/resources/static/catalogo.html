@@ -268,6 +268,7 @@
 
 <script>
     const statusBox = document.getElementById("status");
+    const TOKEN_KEY = "jm.jwt";
     const listaCursosEl = document.getElementById("listaCursos");
     const listaModulosEl = document.getElementById("listaModulos");
     const listaAulasEl = document.getElementById("listaAulas");
@@ -291,13 +292,37 @@
         statusBox.style.background = isError ? "#fef0f0" : "#f6f7f8";
     }
 
-    async function callApi(path, method = "GET", body) {
+    function getToken() {
+        return localStorage.getItem(TOKEN_KEY);
+    }
+
+    function saveToken(token) {
+        if (!token) {
+            return;
+        }
+        localStorage.setItem(TOKEN_KEY, token);
+    }
+
+    function clearToken() {
+        localStorage.removeItem(TOKEN_KEY);
+    }
+
+    async function callApi(path, method = "GET", body, withAuth = true) {
+        const headers = {
+            "Content-Type": "application/json"
+        };
+
+        if (withAuth) {
+            const token = getToken();
+            if (!token) {
+                throw new Error("Faça login para consumir os endpoints protegidos");
+            }
+            headers.Authorization = `Bearer ${token}`;
+        }
+
         const response = await fetch(path, {
             method,
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
+            headers,
             body: body ? JSON.stringify(body) : undefined
         });
 
@@ -476,8 +501,10 @@
         const senha = document.getElementById("senha").value;
 
         try {
-            const data = await callApi("/auth/login", "POST", { email, senha });
+            const data = await callApi("/auth/login", "POST", { email, senha }, false);
+            saveToken(data.token);
             setStatus(`Login OK: ${data.nome} (${data.email})`);
+            await carregarCatalogo();
         } catch (err) {
             setStatus(err.message, true);
         }
@@ -495,6 +522,17 @@
     document.getElementById("btnLogout").addEventListener("click", async () => {
         try {
             const data = await callApi("/auth/logout", "POST");
+            clearToken();
+            state.cursos = [];
+            state.modulos = [];
+            state.aulas = [];
+            state.cursoId = null;
+            state.moduloId = null;
+            state.aulaId = null;
+            renderCursos();
+            renderModulos();
+            renderAulas();
+            clearViewer();
             setStatus(data.mensagem || "Logout realizado");
         } catch (err) {
             setStatus(err.message, true);
@@ -503,7 +541,11 @@
 
     document.getElementById("btnRecarregar").addEventListener("click", carregarCatalogo);
 
-    carregarCatalogo();
+    if (getToken()) {
+        carregarCatalogo();
+    } else {
+        setStatus("Faça login para carregar o catálogo.");
+    }
 </script>
 </body>
 </html>

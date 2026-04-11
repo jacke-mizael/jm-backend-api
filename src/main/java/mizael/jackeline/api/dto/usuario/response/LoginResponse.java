@@ -11,4 +11,6 @@ public class LoginResponse {
     private String nome;
     private String email;
     private String role;
+    private String token;
+    private String tokenType;
 }
